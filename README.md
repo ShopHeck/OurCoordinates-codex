@@ -16,33 +16,36 @@ This repository is intentionally bootstrapped for **fast MVP shipping** and **cl
 
 ```txt
 .
-├── app/                          # Next.js App Router
-│   ├── api/
-│   │   └── health/route.ts       # basic health endpoint
-│   ├── globals.css               # global styles (mobile-first defaults)
-│   ├── layout.tsx                # root layout
-│   └── page.tsx                  # MVP landing page shell
-├── components/                   # presentational React components
-├── lib/
-│   ├── application/              # use-cases / orchestration
-│   ├── core/                     # shared primitives (errors, result types)
-│   ├── domain/                   # business entities + rules
-│   ├── geo/                      # GPS capture + coordinate validation utilities
-│   ├── infrastructure/           # external adapters (DB, webhooks)
-│   ├── preview/                  # personalized product preview services
-│   └── shopify/                  # Shopify clients + mapping
-├── docs/
-│   └── implementation-plan.md    # phased build plan
-├── public/                       # static assets
-├── scripts/                      # automation scripts for CI/dev tasks
-├── tests/                        # unit/integration test entry points
-├── .env.example                  # environment contract
-├── .gitignore
-├── eslint.config.mjs
-├── next.config.mjs
-├── package.json
-└── tsconfig.json
+├── app/                              # present
+│   ├── api/                          # present
+│   │   └── health/route.ts           # present: basic health endpoint
+│   ├── globals.css                   # present: global styles
+│   ├── layout.tsx                    # present: root layout
+│   └── page.tsx                      # present: app shell page
+├── docs/                             # present
+│   └── implementation-plan.md        # present: phased build plan
+├── next-env.d.ts                     # present
+├── next.config.mjs                   # present
+├── package-lock.json                 # present
+├── package.json                      # present
+├── tsconfig.json                     # present
+├── components/                       # planned (Phase 2): reusable UI components
+├── lib/                              # planned (Phases 1-4): domain/application/integration modules
+├── public/                           # planned (Phase 2): static preview/media assets
+├── scripts/                          # planned (Phase 4): jobs and automation tooling
+├── tests/                            # planned (Phase 5): unit/integration/e2e coverage
+├── .env.example                      # planned (Phase 1): environment contract
+└── eslint.config.mjs                 # planned (Phase 5): linting hardening
 ```
+
+### Current maturity
+
+This codebase is currently a **minimal foundation**. Implemented today:
+
+- Next.js **App Router shell** (`app/layout.tsx`, `app/page.tsx`, `app/globals.css`)
+- A single **health endpoint** (`app/api/health/route.ts`)
+
+Everything else in the recommended structure is explicitly marked as **planned** and is tracked in `docs/implementation-plan.md`.
 
 ## Quick start
 
