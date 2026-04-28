@@ -63,3 +63,16 @@ Open `http://localhost:3000`.
 ## Next step
 
 Follow the phased plan in `docs/implementation-plan.md` before implementing features.
+
+## Linting
+
+This project uses Next.js App Router linting via a flat ESLint config (`eslint.config.mjs`) with `next/core-web-vitals` and `next/typescript`, so React and TypeScript checks run together.
+
+Run lint locally with:
+
+```bash
+npm run lint
+```
+
+Expected behavior: ESLint scans the app source and ignores build/dependency artifacts such as `.next/` and `node_modules/` (plus generated output folders).
+
