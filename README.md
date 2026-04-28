@@ -56,6 +56,10 @@ npm run dev
 
 Open `http://localhost:3000`.
 
+## Environment validation
+
+Server-side environment variables are validated during module initialization in `lib/core/env.ts`. If a required value is missing or malformed (for example `SHOPIFY_API_VERSION` or `DATABASE_URL`), the app throws a startup error that includes the exact variable name in the server logs / terminal output so the configuration can be fixed immediately.
+
 ## Core principles implemented
 
 1. **No bloated dependencies**: only runtime dependency is `next`, `react`, `react-dom`.
