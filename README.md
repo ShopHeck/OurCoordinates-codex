@@ -51,6 +51,7 @@ Everything else in the recommended structure is explicitly marked as **planned**
 
 ```bash
 npm install
+cp .env.example .env.local
 npm run dev
 ```
 
