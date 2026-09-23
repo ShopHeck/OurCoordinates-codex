@@ -9,22 +9,27 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
+    "test:social": "node --import tsx --test tests/social-workflow.test.ts",
     "check": "npm run typecheck && npm run lint"
   },
   "dependencies": {
+    "@opencoredev/social-sdk": "^0.2.1",
     "next": "^15.0.0",
+    "pg": "^8.23.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
+    "@types/pg": "^8.23.1",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "eslint": "^9.0.0",
     "eslint-config-next": "^15.0.0",
+    "tsx": "^4.23.15",
     "typescript": "^5.0.0"
   },
   "engines": {
-    "node": ">=20.11.0"
+    "node": ">=22.12.0"
   }
 }
