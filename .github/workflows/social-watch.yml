@@ -1,0 +1,25 @@
+name: OurCoordinates product watch
+
+on:
+  schedule:
+    - cron: '13 14 * * *'
+  workflow_dispatch:
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Check for new product drafts
+        env:
+          SOCIAL_WATCH_URL: ${{ secrets.SOCIAL_WATCH_URL }}
+          SOCIAL_CRON_TOKEN: ${{ secrets.SOCIAL_CRON_TOKEN }}
+        run: |
+          if [ -z "$SOCIAL_WATCH_URL" ] || [ -z "$SOCIAL_CRON_TOKEN" ]; then
+            echo 'Social watch is not configured.'
+            exit 0
+          fi
+          curl --fail-with-body --silent --show-error --max-time 90 \
+            --request POST \
+            --header "Authorization: Bearer $SOCIAL_CRON_TOKEN" \
+            "$SOCIAL_WATCH_URL/api/social/watch"

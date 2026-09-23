@@ -40,12 +40,7 @@ This repository is intentionally bootstrapped for **fast MVP shipping** and **cl
 
 ### Current maturity
 
-This codebase is currently a **minimal foundation**. Implemented today:
-
-- Next.js **App Router shell** (`app/layout.tsx`, `app/page.tsx`, `app/globals.css`)
-- A single **health endpoint** (`app/api/health/route.ts`)
-
-Everything else in the recommended structure is explicitly marked as **planned** and is tracked in `docs/implementation-plan.md`.
+This codebase is an early foundation. The App Router shell, health endpoint, Shopify API clients and webhook intake, coordinate capture, product preview, and the private social approval workflow are present. See `docs/implementation-plan.md` for the remaining work; live integrations require the matching service credentials and deployment.
 
 ## Quick start
 
@@ -57,13 +52,17 @@ npm run dev
 
 Open `http://localhost:3000`.
 
+## Social content approvals
+
+The app now includes a private `/social` review queue for product-derived Instagram drafts, backed by Postgres and `@opencoredev/social-sdk`. Product checks run at most once every 48 hours on the scheduled path; approving a draft and publishing it are separate actions. See [social approval setup](docs/social-approval.md) for the server-side configuration, first-run behavior, and live verification steps.
+
 ## Environment validation
 
 Server-side environment variables are validated during module initialization in `lib/core/env.ts`. If a required value is missing or malformed (for example `SHOPIFY_API_VERSION` or `DATABASE_URL`), the app throws a startup error that includes the exact variable name in the server logs / terminal output so the configuration can be fixed immediately.
 
 ## Core principles implemented
 
-1. **No bloated dependencies**: only runtime dependency is `next`, `react`, `react-dom`.
+1. **Small dependency surface**: Next.js, React, Postgres, and the Social SDK serve the application and approval workflow.
 2. **Safety-first bootstrapping**: strict TS, linting, and explicit env variable contract.
 3. **Conversion-aware architecture**: clear module boundaries for personalized previews and checkout-impacting UX.
 4. **Automation-ready**: folders prepped for webhook handlers and scheduled jobs.
@@ -83,4 +82,3 @@ npm run lint
 ```
 
 Expected behavior: ESLint scans the app source and ignores build/dependency artifacts such as `.next/` and `node_modules/` (plus generated output folders).
-
